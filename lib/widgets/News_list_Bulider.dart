@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+import 'package:newsapp/data/Aritcaldata.dart';
+import 'package:newsapp/service/getnewsaritcal.dart';
+
+import 'package:newsapp/widgets/list_news_widegt.dart';
+
+/// Builds a news list widget using a FutureBuilder to fetch and display news articles.
+///
+/// The `Newsbuliding` widget is responsible for fetching the news articles from the `Aritcal.genraleAritcal` future,
+/// and then rendering a `Listnews` with the fetched articles. If there is an error fetching the articles,
+/// it displays an error message. If the articles are still being fetched, it displays a loading indicator.
+
+class Newsbuliding extends StatefulWidget {
+  bool loading = true;
+  Newsbuliding({super.key});
+
+  @override
+  State<Newsbuliding> createState() => _NewsbulidingState();
+}
+
+class _NewsbulidingState extends State<Newsbuliding> {
+  @override
+  void initState() {
+    EgyNews.newsengine(category: 'top');
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: Aritcal.genraleAritcal,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Listnews(aritcals: snapshot.data!);
+          } else if (snapshot.hasError) {
+            return const SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        color: Colors.red,
+                        size: 60,
+                      ),
+                      Text('Error loading news articles',
+                          style: TextStyle(fontSize: 20, color: Colors.red)),
+                    ],
+                  ),
+                ));
+          } else {
+            return const SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.orange,
+                )));
+            /*
+             SliverToBoxAdapter(
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: Colors.orange,
+              )),
+            );*/
+          }
+        });
+  }
+}
