@@ -16,7 +16,8 @@ To run this app on your local machine, follow these steps:
 
 1. Make sure you have Flutter installed on your system. You can find the installation instructions [here](https://flutter.dev/docs/get-started/install).
 
-2. 2. Clone this repository click [here] (https://github.com/elsaramji/Cantaloop-News.git).
+2.  Clone this repository click [here]
+3.  (https://github.com/elsaramji/Cantaloop-News.git).
 
 
 
