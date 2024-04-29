@@ -23,12 +23,14 @@ class NewsHome extends StatelessWidget {
         ),
         body: SafeArea(
           child: CustomScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             slivers: [
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Categorysection(),
               ),
-              Newsbuliding()
+              Newsbuliding(
+                category: 'top',
+              )
             ],
           ),
         ));

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/views/web_view_show.dart';
-import 'package:newsapp/widgets/Aritcal%20Widget.dart';
-import '../models/aritcal_model.dart';
+
+import '../../models/aritcal_model.dart';
+import '../../views/web_view_show.dart';
+import 'Aritcal Widget.dart';
 
 /// Displays a list of news articles using the [Aritcalwidget].
 ///

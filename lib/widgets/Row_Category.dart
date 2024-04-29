@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/data/category_data.dart';
 import 'package:newsapp/views/category.dart';
 
-import 'package:newsapp/widgets/Categorywidget.dart';
+import 'package:newsapp/widgets/news_data_widget/Categorywidget.dart';
 
 class Categorysection extends StatelessWidget {
   /// Constructs a [Categorysection] widget.

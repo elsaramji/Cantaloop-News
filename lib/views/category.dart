@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/data/Aritcaldata.dart';
 import 'package:newsapp/data/appbar_data.dart';
-import 'package:newsapp/service/getnewsaritcal.dart';
+import 'package:newsapp/service/news_APi_Function.dart';
 import 'package:newsapp/widgets/Appbarwidget.dart';
 import 'package:newsapp/widgets/News_list_Bulider.dart';
 
@@ -18,29 +18,22 @@ import 'package:newsapp/widgets/News_list_Bulider.dart';
 /// The widget builds a [Scaffold] with a [SafeArea] and a [CustomScrollView]
 /// that contains a single [Newsbuliding] widget to display the news articles.
 
-class CategoryView extends StatefulWidget {
+class CategoryView extends StatelessWidget {
   final String id;
   const CategoryView({super.key, required this.id});
 
   @override
-  State<CategoryView> createState() => _CategoryViewState();
-}
-
-@override
-class _CategoryViewState extends State<CategoryView> {
-  @override
-  void initState() {
-    Aritcal.genraleAritcal = EgyNews.newsengine(category: widget.id);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Normalbar(model: Appbardata.modelbar),
         body: SafeArea(
           child: CustomScrollView(
-            slivers: [Newsbuliding()],
+            slivers: [
+              Newsbuliding(
+                category: id,
+              )
+            ],
           ),
         ));
   }

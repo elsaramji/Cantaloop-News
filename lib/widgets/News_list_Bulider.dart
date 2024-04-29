@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/data/Aritcaldata.dart';
-import 'package:newsapp/service/getnewsaritcal.dart';
-
-import 'package:newsapp/widgets/list_news_widegt.dart';
+import 'package:newsapp/service/news_APi_Function.dart';
+import 'package:newsapp/widgets/news_data_widget/list_news_widegt.dart';
 
 /// Builds a news list widget using a FutureBuilder to fetch and display news articles.
 ///
@@ -10,9 +8,11 @@ import 'package:newsapp/widgets/list_news_widegt.dart';
 /// and then rendering a `Listnews` with the fetched articles. If there is an error fetching the articles,
 /// it displays an error message. If the articles are still being fetched, it displays a loading indicator.
 
+// ignore: must_be_immutable
 class Newsbuliding extends StatefulWidget {
   bool loading = true;
-  Newsbuliding({super.key});
+  final String category;
+  Newsbuliding({super.key, required this.category});
 
   @override
   State<Newsbuliding> createState() => _NewsbulidingState();
@@ -21,14 +21,14 @@ class Newsbuliding extends StatefulWidget {
 class _NewsbulidingState extends State<Newsbuliding> {
   @override
   void initState() {
-    EgyNews.newsengine(category: 'top');
+    EgyNews.newsengine(category: widget.category);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Aritcal.genraleAritcal,
+        future: EgyNews.newsengine(category: widget.category),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Listnews(aritcals: snapshot.data!);
@@ -56,13 +56,6 @@ class _NewsbulidingState extends State<Newsbuliding> {
                     child: CircularProgressIndicator(
                   color: Colors.orange,
                 )));
-            /*
-             SliverToBoxAdapter(
-              child: Center(
-                  child: CircularProgressIndicator(
-                color: Colors.orange,
-              )),
-            );*/
           }
         });
   }
